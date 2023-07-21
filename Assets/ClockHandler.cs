@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ClockHandler : MonoBehaviour
 {
@@ -18,10 +17,9 @@ public class ClockHandler : MonoBehaviour
 
     private float _currentTime;
 
-    public void SetHours()
-    {
-
-    }
+    private int _hour;
+    private int _minute;
+    private int _seconds;
 
     public void SetInitialTime(int hours, int minutes, int seconds)
     {
@@ -63,3 +61,5 @@ public class ClockHandler : MonoBehaviour
         Invoke(nameof(UpdateClock), deltaTime);
     }
 }
+
+
