@@ -8,7 +8,7 @@ public class ClockHandler : MonoBehaviour
     [SerializeField] private Transform _secondRing;
 
     [SerializeField] private Transform _hourCircle;
-    [SerializeField] private Transform _minuteCircle; 
+    [SerializeField] private Transform _minuteCircle;
     [SerializeField] private Transform _secondCircle;
 
     [SerializeField] private TMP_Text _hours;
@@ -16,10 +16,6 @@ public class ClockHandler : MonoBehaviour
     [SerializeField] private TMP_Text _second;
 
     private float _currentTime;
-
-    private int _hour;
-    private int _minute;
-    private int _seconds;
 
     public void SetInitialTime(int hours, int minutes, int seconds)
     {

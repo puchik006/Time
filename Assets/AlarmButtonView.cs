@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Toggle))]
-public class AlarmHadlerView : MonoBehaviour
+public class AlarmButtonView : MonoBehaviour
 {
     [SerializeField] private GameObject _clock;
     [SerializeField] private GameObject _alarm;
