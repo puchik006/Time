@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     private AlarmTimeSetController _secondsSetterController;
     private MinutesOrSecondsSetterAlarmModel _secondsSetterModel;
 
+    [SerializeField] private AlarmButtonView _alarmButtonView;
+    [SerializeField] private AlarmArrowView _alarmArrowView;
+    private AlarmHandler _alarmHandler;
+
     private void Awake()
     {
         _hourSetterModel = new HourSetterAlarmModel();
@@ -24,5 +28,7 @@ public class GameManager : MonoBehaviour
 
         _secondsSetterModel = new MinutesOrSecondsSetterAlarmModel();
         _secondsSetterController = new AlarmTimeSetController(_secondsSetterView,_secondsSetterModel);
+
+        _alarmHandler = new AlarmHandler(_hourSetterModel, _minutesSetterModel, _secondsSetterModel, _alarmButtonView, _alarmArrowView);
     }
 }

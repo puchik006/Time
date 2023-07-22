@@ -7,8 +7,9 @@ public class AlarmButtonView : MonoBehaviour
 {
     [SerializeField] private GameObject _clock;
     [SerializeField] private GameObject _alarm;
-
     private Toggle _alarmButton;
+
+    public event Action AlarmButtonClicked;
 
     private void Awake()
     {
@@ -20,5 +21,10 @@ public class AlarmButtonView : MonoBehaviour
     {
         _clock.SetActive(!isOn);
         _alarm.SetActive(isOn);
+
+        if (!isOn)
+        {
+            AlarmButtonClicked?.Invoke();
+        }
     }
 }

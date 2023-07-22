@@ -3,12 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class AlarmTimeSetView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IAlarmable
+public class AlarmTimeSetView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private Transform _timeRing;
     [SerializeField] private TMP_Text _timeText;
-
-    public string AlarmTimeText => _timeText.text;
 
     public event Action<Transform,Transform> PointerDown;
     public event Action PointerUp;

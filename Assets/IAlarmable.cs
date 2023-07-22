@@ -1,4 +1,4 @@
 ﻿public interface IAlarmable
 {
-    string AlarmTimeText { get; }
+    int AlarmTime { get; }
 }
