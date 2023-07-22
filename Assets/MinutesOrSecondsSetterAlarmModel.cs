@@ -1,4 +1,4 @@
-﻿public class MinutesOrSecondsSetterAlarmModel: AlarmTimeSetModel, IAlarmable
+﻿public class MinutesOrSecondsSetterAlarmModel: AlarmTimeSetModel, IAlarmTime
 {
     private int _time;
     public int AlarmTime => _time;

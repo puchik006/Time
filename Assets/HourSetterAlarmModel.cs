@@ -1,4 +1,4 @@
-﻿public class HourSetterAlarmModel: AlarmTimeSetModel, IAlarmable
+﻿public class HourSetterAlarmModel: AlarmTimeSetModel, IAlarmTime
 {
     private int _hours;
     public int AlarmTime => _hours;

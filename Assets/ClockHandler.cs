@@ -1,7 +1,8 @@
+using System;
 using TMPro;
 using UnityEngine;
 
-public class ClockHandler : MonoBehaviour
+public class ClockHandler : MonoBehaviour, IClockTimeInSeconds
 {
     [SerializeField] private Transform _hourRing;
     [SerializeField] private Transform _minuteRing;
@@ -16,6 +17,7 @@ public class ClockHandler : MonoBehaviour
     [SerializeField] private TMP_Text _second;
 
     private float _currentTime;
+    public event Action<float> CurrentTimeUpdated;
 
     public void SetInitialTime(int hours, int minutes, int seconds)
     {
@@ -24,7 +26,6 @@ public class ClockHandler : MonoBehaviour
 
     private void Start()
     {
-        SetInitialTime(19, 10, 50);
         UpdateClock();
     }
 
@@ -33,6 +34,7 @@ public class ClockHandler : MonoBehaviour
         float deltaTime = 0.1f;
 
         _currentTime += deltaTime;
+        CurrentTimeUpdated?.Invoke(_currentTime);
 
         float hourRotation = (_currentTime / 3600f) * 360f / 12f;
         float minuteRotation = (_currentTime / 60f) * 360f / 60f;

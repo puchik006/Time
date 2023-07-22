@@ -3,20 +3,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class TimeAPIManager : MonoBehaviour
+public class TimeAPIManager
 {
-    //[SerializeField] private string apiUrl = "http://worldtimeapi.org/api/ip";
-
-    [SerializeField] private string apiUrl = "https://time.is/";
-
-    private void Start()
+    public IEnumerator GetTimeFromAPI(string apiURL, Action<int,int,int> callback)
     {
-        StartCoroutine(GetTimeFromAPI());
-    }
-
-    private IEnumerator GetTimeFromAPI()
-    {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(apiUrl))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(apiURL))
         {
             yield return webRequest.SendWebRequest();
 
@@ -29,7 +20,12 @@ public class TimeAPIManager : MonoBehaviour
             string jsonResponse = webRequest.downloadHandler.text;
             WorldTimeAPIResponse response = JsonUtility.FromJson<WorldTimeAPIResponse>(jsonResponse);
             DateTime currentTime = DateTime.Parse(response.datetime);
-            Debug.Log("Current Time: " + currentTime);
+
+            int hours = currentTime.Hour;
+            int minutes = currentTime.Minute;
+            int seconds = currentTime.Second;
+
+            callback?.Invoke(hours, minutes, seconds);
         }
     }
 }

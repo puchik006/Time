@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public partial class GameManager : MonoBehaviour
 {
     [SerializeField] private AlarmTimeSetView _hourSetterView;
     private AlarmTimeSetController _hourSetterController;
@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AlarmArrowView _alarmArrowView;
     private AlarmHandler _alarmHandler;
 
+    private TimeAPIManager _timeApi;
+    [SerializeField] ClockHandler _clock;
+    private ExternalTimeUpdater _externalTimeUpdater;
+
     private void Awake()
     {
         _hourSetterModel = new HourSetterAlarmModel();
@@ -29,6 +33,9 @@ public class GameManager : MonoBehaviour
         _secondsSetterModel = new MinutesOrSecondsSetterAlarmModel();
         _secondsSetterController = new AlarmTimeSetController(_secondsSetterView,_secondsSetterModel);
 
-        _alarmHandler = new AlarmHandler(_hourSetterModel, _minutesSetterModel, _secondsSetterModel, _alarmButtonView, _alarmArrowView);
+        _alarmHandler = new AlarmHandler(_hourSetterModel, _minutesSetterModel, _secondsSetterModel, _alarmButtonView, _alarmArrowView, _clock);
+
+        _timeApi = new TimeAPIManager();
+        _externalTimeUpdater = new ExternalTimeUpdater(_clock,_timeApi);
     }
 }
