@@ -11,7 +11,14 @@
         {
             _clock = clock;
             _timeApi = timeAPI;
-            _clock.StartCoroutine(_timeApi.GetTimeFromAPI(apiUrl1,_clock.SetInitialTime));
+            SetTime(); 
+
+            _clock.OneHourUpdate += SetTime;
+        }
+
+        private void SetTime()
+        {
+            _clock.StartCoroutine(_timeApi.GetTimeFromAPI(apiUrl1, _clock.SetInitialTime));
             _clock.StartCoroutine(_timeApi.GetTimeFromAPI(apiUrl2, _clock.SetInitialTime));
         }
     }

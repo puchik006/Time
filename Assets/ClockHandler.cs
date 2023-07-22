@@ -18,6 +18,7 @@ public class ClockHandler : MonoBehaviour, IClockTimeInSeconds
 
     private float _currentTime;
     public event Action<float> CurrentTimeUpdated;
+    public event Action OneHourUpdate;
 
     public void SetInitialTime(int hours, int minutes, int seconds)
     {
@@ -27,6 +28,7 @@ public class ClockHandler : MonoBehaviour, IClockTimeInSeconds
     private void Start()
     {
         UpdateClock();
+        SetTimeEveryHour();
     }
 
     private void UpdateClock()
@@ -57,6 +59,13 @@ public class ClockHandler : MonoBehaviour, IClockTimeInSeconds
         _secondCircle.rotation = Quaternion.identity;
 
         Invoke(nameof(UpdateClock), deltaTime);
+    }
+
+    private void SetTimeEveryHour()
+    {
+        float deltaTime = 3600f;
+        OneHourUpdate?.Invoke();
+        Invoke(nameof(SetTimeEveryHour), deltaTime);
     }
 }
 

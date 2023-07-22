@@ -1,4 +1,6 @@
-﻿public class AlarmHandler
+﻿using System.Diagnostics;
+
+public class AlarmHandler
 {
     private IAlarmTime _hours;
     private IAlarmTime _minutes;
@@ -32,7 +34,9 @@
 
     private void CheckAlarm(float currentTime)
     {
-        if (currentTime >= _alarmArrowView.AlarmTime)
+        float catchRange = 0.5f;
+
+        if (currentTime >= _alarmArrowView.AlarmTime - catchRange && currentTime <= _alarmArrowView.AlarmTime + catchRange)
         {
             _alarmArrowView.DisableAlarmArrow();
             //beep beep
